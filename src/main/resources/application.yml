@@ -1,0 +1,51 @@
+server:
+  port: 8090
+  ssl:
+    key-store: classpath:tls/keystore-baobab.p12
+    key-store-password: password
+    key-store-type: PKCS12
+    #key-alias: selfsigned
+    ciphers: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
+    enabled-protocols: TLSv1.2
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9080/realms/baobab
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://localhost:5432/baobabBanking
+    username: baobabBanking
+    password:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+      auto-commit: false
+  liquibase:
+    change-log: classpath:db/changelog/master.xml
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate.jdbc.time_zone: UTC
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: true
+    hibernate:
+      ddl-auto: none
+
+keycloak:
+  enabled: true
+
+
+#keycloak:
+#  realm: Baobab
+#  auth-server-url: http://${KEYCLOAK_HOST:localhost}:${KEYCLOAK_PORT:9080}/auth
+#  resource: spring-app
+#  bearer-only: true
+
+#logging:
+#  level:
+#    ROOT: DEBUG
+#    org.keycloak: DEBUG
