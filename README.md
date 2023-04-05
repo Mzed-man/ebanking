@@ -1,6 +1,7 @@
 # Read Me First
 Consider the followings
-
+* This application runs on Java 17
+* You can run application via command-line by using **mvn spring-boot:run**
 * Application runs on https with a self-signed certificate on port 8090
 * You must first start docker containers for PostgreSQL and Keycloak servers (see instructions below)
 * It has been decided to have configurables bank account types. All related operations are on /bank-accounts-types endpoint
