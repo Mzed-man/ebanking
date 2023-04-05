@@ -5,7 +5,7 @@ Consider the followings
 * Application runs on https with a self-signed certificate on port 8090
 * You must first start docker containers for PostgreSQL and Keycloak servers (see instructions below)
 * It has been decided to have configurables bank account types. All related operations are on /bank-accounts-types endpoint
-* Database DDL can be viewed on file **ddl-to-use.sql**
+* First started using liquibase to manage database migrations but this project has been initialized with Spring Boot 3 which requires at leasr Java 17 and liquibase doesnt fully support Java 17 so will have to use the database DDL on file **ddl-to-use.sql**
 
 
 
