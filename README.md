@@ -4,7 +4,7 @@ Consider the followings
 * Application runs on https with a self-signed certificate on port 8090
 * You must first start docker containers for PostgreSQL and Keycloak servers (see instructions below)
 * It has been decided to have configurables bank account types. All related operations are on /bank-accounts-types endpoint
-
+* Database DDL can be viewed on file **ddl-to-use.sql**
 
 
 
