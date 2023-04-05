@@ -6,7 +6,6 @@ import com.baobab.ebanking.service.BankAccountService;
 import com.baobab.ebanking.service.mapper.BankAccountMapper;
 import com.baobab.ebanking.web.dto.BankAccountDto;
 import jakarta.ws.rs.BadRequestException;
-import jakarta.ws.rs.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +77,14 @@ public class BankAccountServiceImpl implements BankAccountService {
         log.debug("Request to get bankAccount : {}", id);
         return bankAccountRepository.findById(id).map(bankAccountMapper::toDto);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<BankAccountDto> findFirstByAccountId(String accountId) {
+        log.debug("Request to get bankAccount : {}", accountId);
+        return bankAccountRepository.findFirstByAccountId(accountId).map(bankAccountMapper::toDto);
+    }
+
 
     @Override
     public BankAccountDto touchBalance(BankAccountDto bankAccountDto, Long amount, String type) {

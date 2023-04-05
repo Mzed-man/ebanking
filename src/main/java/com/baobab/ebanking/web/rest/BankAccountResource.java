@@ -87,6 +87,9 @@ public class BankAccountResource {
         if(bankAccountDto.getId() != null){
             throw new BadRequestException();
         }
+        if(bankAccountService.findFirstByAccountId(bankAccountDto.getAccountId()).isPresent()){
+            throw new BadRequestException();
+        }
         BankAccountDto result = bankAccountService.save(bankAccountDto);
         return Response.created(new URI("/api/bank-accounts/" + result.getId())).entity(result).build();
     }

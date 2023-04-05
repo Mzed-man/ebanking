@@ -31,7 +31,8 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests(
-                        auth -> auth.anyRequest().authenticated()
+                        (auth) -> auth
+                                .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .build();

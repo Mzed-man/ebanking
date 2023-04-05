@@ -4,6 +4,7 @@ import com.baobab.ebanking.web.dto.BankAccountDto;
 import com.baobab.ebanking.web.dto.BankAccountTypeDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,6 +48,9 @@ public interface BankAccountService {
      */
     Optional<BankAccountDto> findOne(Long id);
 
+
+    @Transactional(readOnly = true)
+    Optional<BankAccountDto> findFirstByAccountId(String accountId);
 
     BankAccountDto touchBalance(BankAccountDto bankAccountDto, Long amount, String type);
 
